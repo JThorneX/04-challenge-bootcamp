@@ -24,6 +24,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -43,6 +44,7 @@ section {
   align-items: center;
   background-color: var(--dark);
   color: var(--light);
+  font-size: 35px;
   height: 200px;
   width: 500px;
   border-radius: 10px;
@@ -63,13 +65,32 @@ section {
   margin: 20px;
 }
 
-/* .submit {
+.splashPage {
+  cursor: pointer;
+  position: fixed;
+  text-align: center;
+  top: 57%;
+  left: 50%;
+  height: 77%;
+  width: 75%;
+  transform: translate(-50%, -50%);
+  background: var(--midOrange);
+  transition: all ease-in-out 600ms;
+}
+
+.splashText {
+  height: 75%;
+  color: var(--light);
+  font-size: 35px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(44, 7, 1);
-  color: rgb(255, 202, 195);
-  padding: 10px;
-} */
+}
+
+.hidden {
+  transition: 0.5s;
+  display: none;
+}
 
 .btn {
   border: var(--light);
@@ -78,6 +99,7 @@ section {
   display: inline-block;
   color: var(--light);
   padding: 15px;
+  width: 150px;
   text-align: center;
   cursor: pointer;
   font-size: 24px;
@@ -85,4 +107,8 @@ section {
 
 .btn:hover {
   box-shadow: 3px 4px 3px var(--light);
+}
+
+.btn:active {
+  transform: translate(1px, 2px);
 }

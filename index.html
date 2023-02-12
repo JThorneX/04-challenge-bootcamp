@@ -4,17 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Code Quiz</title>
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
     <h1>Test Your Knowledge</h1>
     <section>
-      <div class="quiz">
-        <div id="questions" class="questions"></div>
-        <div class="answers" class="answers"></div>
-        <div id="submit" class="btn">Submit</div>
+      <div class="splashPage">
+        <p class="splashText">
+          This is a quiz to test your knowledge of basic JavaScript. <br />The
+          quiz is timed and if you answer wrong, you will lose 3 seconds -
+          <br />it ends when you've answered 10 questions or run out of time.<br />
+          Click to continue.
+        </p>
       </div>
+      <div class="quiz">
+        <div id="questions" class="questions">Press Start</div>
+        <div class="answers" class="answers"></div>
+        <button id="start" class="btn">Start</button>
+        <div id="results" class="results"></div>
+      </div>
+    </section>
+    <section>
+      <div id="final" class="final">test</div>
     </section>
     <script src="./assets/script.js"></script>
   </body>
