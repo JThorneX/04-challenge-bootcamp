@@ -14,3 +14,6 @@ timer reaches 0 === game over
 scoreboard with place for initials
 
 scoring system (just use the seconds?)
+
+
+split up questions and answers into two divs -- use arrays probably
