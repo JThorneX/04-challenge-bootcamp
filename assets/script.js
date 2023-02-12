@@ -5,6 +5,7 @@ var answerEl = document.querySelector("#answers");
 var quizCont = document.querySelector("#quiz");
 var resultsEl = document.querySelector("#results");
 var finalEl = document.querySelector("#final");
+var leaderboards = document.querySelector("");
 
 //variables
 var timer = 60;
