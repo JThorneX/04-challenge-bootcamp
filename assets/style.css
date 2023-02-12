@@ -1,0 +1,88 @@
+:root {
+  --dark: rgb(44, 7, 1);
+  --midOrange: rgb(119, 44, 0);
+  --midRed: rgb(90, 19, 7);
+  --light: rgb(252, 218, 214);
+}
+
+body {
+  display: flex;
+  background-color: var(--dark);
+  flex-direction: column;
+}
+
+h1 {
+  margin-left: -30px;
+  text-align: center;
+  width: 100%;
+  background-color: var(--midOrange);
+  color: var(--light);
+  padding: 30px;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.quiz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 600px;
+  height: 600px;
+  background-color: var(--midRed);
+}
+
+.questions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark);
+  color: var(--light);
+  height: 200px;
+  width: 500px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.answers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark);
+  color: var(--light);
+  height: 200px;
+  width: 500px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+/* .submit {
+  display: flex;
+  align-items: center;
+  background-color: rgb(44, 7, 1);
+  color: rgb(255, 202, 195);
+  padding: 10px;
+} */
+
+.btn {
+  border: var(--light);
+  border-radius: 10px;
+  background-color: var(--dark);
+  display: inline-block;
+  color: var(--light);
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.btn:hover {
+  box-shadow: 3px 4px 3px var(--light);
+}

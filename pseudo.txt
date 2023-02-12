@@ -1,0 +1,16 @@
+button to start - eventlistener
+
+timer starts -- counts down normally unless answer wrong than subtract an extra 5 seconds  (difficulties ? 2s 8s?) if else statements
+
+display wrong somewhere without impeding the quiz? a red -5 by the timer?
+
+questions must store the correct answer -- array since multiple choice?
+//container
+
+new question when answered old
+
+timer reaches 0 === game over
+
+scoreboard with place for initials
+
+scoring system (just use the seconds?)
