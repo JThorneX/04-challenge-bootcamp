@@ -13,7 +13,7 @@ var runningTimer;
 var score = 0;
 var questionsIndex = 0;
 
-var splashOff = document.querySelector(".splashPage");
+var splashOff = document.querySelector(".splashPageContainer");
 splashOff.addEventListener("click", () => {
   splashOff.style.opacity = 0;
   setTimeout(() => {

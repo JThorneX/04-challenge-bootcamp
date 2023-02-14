@@ -10,24 +10,37 @@
   <body>
     <h1>Test Your Knowledge</h1>
     <section>
-      <div class="splashPage">
-        <p class="splashText">
+      <!-- <div class="splashPageContainer">
+        <p class="splashTextP">
           This is a quiz to test your knowledge of basic JavaScript. <br />The
           quiz is timed and if you answer wrong, you will lose 3 seconds -
           <br />it ends when you've answered 10 questions or run out of time.<br />
           Click to continue.
         </p>
-      </div>
-      <div class="quiz">
-        <div id="questions" class="questions">Press Start</div>
-        <div class="answers" class="answers"></div>
-        <button id="start" class="btn">Start</button>
+      </div> -->
+      <div id="leaderboard" class="leaderboard">test</div>
+      <div class="quizContainer">
+        <div id="questionsArea" class="questionsArea">Press Start</div>
+        <div id="answersArea" class="answersArea">
+          <div id="choicesArea" class="btn-grid">
+            <button class="choicesBtn">[0]</button>
+            <button class="choicesBtn">[1]</button>
+            <button class="choicesBtn">[2]</button>
+            <button class="choicesBtn">[3]</button>
+          </div>
+        </div>
+        <button id="startBtn" class="btn show">Start</button>
         <div id="results" class="results"></div>
       </div>
+      <div id="timerDisplay" class="timerDisplay">
+        60
+        <div id="factChecker">
+          <p id="wrongChecker" class="hide">Wrong!</p>
+          <p id="correctChecker" class="hide">Correct!</p>
+        </div>
+      </div>
     </section>
-    <section>
-      <div id="final" class="final">test</div>
-    </section>
-    <script src="./assets/script.js"></script>
+
+    <script src="./assets/script 1.js"></script>
   </body>
 </html>
