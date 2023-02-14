@@ -7,7 +7,7 @@ var timerEl = document.getElementById("timerDisplay");
 
 //buttons
 var startBtn = document.querySelector("#startBtn");
-var choicesBtn = document.querySelector(".choicesBtn");
+// var choicesBtn = document.querySelector("choicesBtn");
 // var scoreBtn =
 
 //questions/answers/timer
@@ -87,41 +87,40 @@ function countdown() {
 
 //eventListeners
 startBtn.addEventListener("click", startQuiz); //calls startQuiz below
-choicesBtn.addEventListener("click", answersChecker);
 
 //check if answer is correct
 
-//progress question index
+//start quiz and check answer
 function startQuiz() {
   //gets called by eventListener above
   countdown(); //calls countdown function above
-  // btn.classList.remove("show");
-  // btn.classList.add("hide");
-  
-  for (var i = 0; i < theQuestions.length; i++) {
-    questionsContainer.textContent = theQuestions[i].question; //leads to theQuestions array above
-  }
-  
-  for (var i = 0; i < theQuestions.length; i++) {
-    answersContainer.textContent = theQuestions[i].choices; //leads to theQuestions array above
+
+  // for (var i = 0; i < theQuestions.length; i++) {
+  //   //leads to theQuestions array above
+  // }
+
+  for (i = 0; i < theQuestions.length; i++) {
+    questionsContainer.textContent = theQuestions[i].question;
+    var answer = theQuestions[i];
+    var theBtns = document.getElementById("choicesBtn" + i);
+    theBtns.textContent = answer;
+    //leads to theQuestions array above
+
     // addEventListener
   }
+  //display correct or wrong
   function answersChecker() {
     if (theQuestions[i].answer === false) {
-      wrongChecker(); //leads to function below
+      wrongChecker.classList.add("hide");
+      wrongChecker.classList.add("show");
     } else {
-      correctChecker(); //leads to function below
+      correctChecker.classList.add("show");
+      correctChecker.classList.add("hide");
     }
   }
 }
 
-//display correct or wrong
-function wrongChecker() {
-  wrongChecker.classList.add("show"); //gets called from the answers
-}
-function correctChecker() {
-  correctChecker.classList.add("show"); //gets called from the answers
-}
+//progress question array
 
 //display score
 function showScore() {}
