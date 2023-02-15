@@ -18,27 +18,44 @@
           Click to continue.
         </p>
       </div> -->
-      <div id="leaderboard" class="leaderboard">Leaderboard</div>
+      <div id="leaderboard" class="leaderboard">
+        <h2>Leaderboard</h2>
+        <div id=leaderboardBoard></div>
+        <button id="clearLeader">Clear Scores</button>
+    </div>
       <div class="quizContainer">
         <div id="questionsArea" class="questionsArea">Press Start</div>
+        <div class="finalScore hide" id="finalPopUp">
+          <span id="finalScore"></span>
+        </div>
         <div id="answersArea" class="answersArea">
+          <div id="inputInitials" class="hide">
+            <input type="text" id="initials" /><br />
+            <p>Enter initials:</p>
+          </div>
+
           <div id="choicesArea" class="btn-grid">
-            <button class="choicesBtn"></button>
-            <button class="choicesBtn"></button>
-            <button class="choicesBtn"></button>
-            <button class="choicesBtn"></button>
+            <button id="theBtns0" class="choicesBtn"></button>
+            <button id="theBtns1" class="choicesBtn"></button>
+            <button id="theBtns2" class="choicesBtn"></button>
+            <button id="theBtns3" class="choicesBtn"></button>
           </div>
         </div>
-        <button id="startBtn" class="btn show">Start</button>
+        <div id="subBtn" class="hide">
+          <button id="submitBtn" class="btn hide">Submit</button>
+        </div>
+        <div id="starBtn" class=show"><button id="startBtn" class="btn">Start</button></div>
         <div id="results" class="results"></div>
       </div>
       <div id="timerDisplay" class="timerDisplay">
         60
+        <div id="penalty"></div>
         <div id="factChecker">
-          <p id="wrongChecker" class="hide">Wrong!</p>
-          <p id="correctChecker" class="hide">Correct!</p>
+          <p id="wrongChecker"></p>
+          <p id="correctChecker"></p>
         </div>
       </div>
+      <div id="game-over"></div>
     </section>
 
     <script src="./assets/script 1.js"></script>
