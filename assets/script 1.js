@@ -6,13 +6,18 @@ var answersContainer = document.getElementById("answersArea");
 var timerEl = document.getElementById("timerDisplay");
 var correctYes = document.getElementById("correctChecker");
 var wrongYes = document.getElementById("wrongChecker");
-var finalScore = document.getElementById("finalScore");
+// var finalScore = document.getElementById("finalScore");
 var penaltyDisplay = document.getElementById("penalty");
+var typeInitials = document.getElementById("inputInitials");
+var choicesArea = document.getElementById("choicesArea");
 
 //buttons
 var startBtn = document.querySelector("#startBtn");
+var choicesBtn = document.querySelector("#choicesArea"); ////tried choicesArea id, choicesBtn class, unique id after theBtns[]
 var clearPoints = document.getElementById("clearLeader");
 var startBtn = document.getElementById("startBtn");
+var playAgainBtn = document.getElementById("playAgainBtn");
+var submitBtn = document.getElementById("submitBtn");
 // var choicesBtn = document.querySelector("choicesBtn");
 // var scoreBtn =
 
@@ -67,14 +72,15 @@ var theQuestions = [
   },
 ];
 
-//splash screen
-// var splashOff = document.querySelector(".splashPageContainer");
-// splashOff.addEventListener("click", () => {
-//   splashOff.style.opacity = 0;
-//   setTimeout(() => {
-//     splashOff.classList.add("hidden");
-//   }, 610);
-// });
+// splash screen
+
+var splashOff = document.querySelector(".splashPageContainer");
+splashOff.addEventListener("click", () => {
+  splashOff.style.opacity = 0;
+  setTimeout(() => {
+    splashOff.classList.add("hidden");
+  }, 610);
+});
 
 //check timer every second
 function countdown() {
@@ -94,6 +100,8 @@ function countdown() {
 //eventListeners
 startBtn.addEventListener("click", startQuiz); //calls startQuiz below
 answersContainer.addEventListener("click", answersChecker);
+playAgainBtn.addEventListener("click", playAgain);
+submitBtn.addEventListener("click", initialInput);
 
 //check if answer is correct
 
@@ -134,7 +142,7 @@ var answersChecker = function (event) {
     checkAnswer.textContent !== theQuestions[QuestionsIndex].correctAnswer
   ) {
     timeLeft = timeLeft - penaltyPoints;
-    penaltyText.textContent = "-3"; //var defined above within function
+    penaltyText.textContent = "-3"; //var defined above within function (null?)
     wrongYes.textContent = "Wrong!";
     setTimeout(() => {
       wrongYes.style.display = "none";
@@ -157,27 +165,85 @@ var nextQuestion = function () {
 };
 
 //display score
-function showScore() {}
 
 //game over
 var gameOver = function () {
   clearInterval(timerInter);
-  answersContainer.textContent = initialInput();
-  questionsContainer.textContent = showScore();
+  questionsContainer.textContent = "";
+  // var theBtns = document.getElementById("theBtns" + i);
+  // theBtns.setAttribute("hidden", true);
+  choicesBtn.style.visibility = "hidden";
+  typeInitials.removeAttribute("hidden");
 };
+//play again
+var playAgain = function () {
+  time = 60;
+  clearInterval(timerInter);
+  currentQuestion = 0;
+  choicesBtn.style.visibility = "visible";
+  startQuiz();
+};
+
 //create high score + input initials
-// var initialInput = function (event) {
-//   event.preventDefault();
-// };
+var initialInput = function (event) {
+  //// event.stopPropagation(); ???????????
+  questionsContainer.textContent = "Score: " + timeLeft;
+  var initials = document.getElementById("inputInitials");
+  initials.setAttribute("hidden", "false");
+  var LBinfo = {
+    initials: initials.value,
+    score: timeLeft,
+  };
+  leaderScores(LBinfo);
+  displayLeaderboard();
+};
 
+// function finalScore() {
+//   score.textContent = timeLeft;
+// }
 //sort scores
+var scoresSort = function () {
+  var LBArray = getLocal(); //gets local storage data
+  LBArray.sort(function (a, b) {
+    return b.score - a.score;
+  });
+  return LBArray;
+};
+//order list of initials based on score - should be arrayed with scores above
 
-//order list of initials based on score
+//leaderboard display
+var displayLeaderboard = function () {
+  var sort = scoresSort(); //call scoresSort above
+  var theLB = document.getElementById("leaderboardBoard"); //the lis in the board itself
+  theLB.textContent = "";
 
-var displayLeaderboard = function () {};
-//save score (local storage google)
-var updateLeaderboard = function (LBinfo) {
+  for (i = 0; i < sort.length; i++) {
+    var entries = sort[i];
+    var entriesLB = document.getElementById("playerDisplay");
+    entriesLB.createElement("li");
+    entriesLB.textContent = entries.intials + " - " + entries.score;
+    theLB.appendChild(entriesLB);
+  }
+};
+//clear leaderboard (localstorage)
+var clearLeaderboard = function () {
+  localStorage.clear();
+  displayLeaderboard();
+};
+//save score (local storage google) (JSON stringify)
+var leaderScores = function (LBinfo) {
   var LBArray = getScore();
   LBArray.push(LBinfo);
   localStorage.setItem("LBArray", JSON.stringify(LBArray));
+};
+//retrieve from localstorage and parse
+var getLocal = function () {
+  var localScores = localStorage.getItem("LBArray");
+  if (localScores !== null) {
+    var LBArray = JSON.parse(localScores);
+    return scoreArray;
+  } else {
+    scoreArray = [];
+  }
+  return LBArray;
 };
