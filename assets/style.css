@@ -217,7 +217,7 @@ section {
 }
 
 #startBtn {
-  border: var(--light);
+  border: 1px solid var(--lightP);
   border-radius: 10px;
   background-color: var(--dark);
   display: inline-block;
@@ -240,7 +240,7 @@ section {
 
 #playAgainBtn {
   margin-top: 10px;
-  border: var(--light);
+  border: 1px solid var(--lightP);
   border-radius: 10px;
   background-color: var(--dark);
   display: inline-block;
@@ -262,7 +262,7 @@ section {
 }
 
 #submitBtn {
-  border: var(--light);
+  border: 1px solid var(--lightP);
   border-radius: 10px;
   background-color: var(--dark);
   display: inline-block;
@@ -284,7 +284,7 @@ section {
 }
 
 #clearLeader {
-  border: var(--light);
+  border: 1px solid var(--lightP);
   border-radius: 10px;
   background-color: var(--dark);
   display: inline-block;

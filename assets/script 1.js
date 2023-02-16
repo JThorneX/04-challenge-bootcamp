@@ -172,7 +172,7 @@ var gameOver = function () {
   questionsContainer.textContent = "";
   // var theBtns = document.getElementById("theBtns" + i);
   // theBtns.setAttribute("hidden", true);
-  choicesBtn.style.visibility = "hidden";
+  choicesBtn.classList.add("hidden");
   typeInitials.removeAttribute("hidden");
 };
 //play again
