@@ -5,13 +5,14 @@ timer starts -- counts down normally unless answer wrong than subtract an extra 
 display wrong somewhere without impeding the quiz? a red -5 by the timer?
 
 questions must store the correct answer -- array since multiple choice?
-//container
+/container
 
 new question when answered old
 
 timer reaches 0 === game over
 
 scoreboard with place for initials
+turn initials + score into array and display with array?
 
 scoring system (just use the seconds?)
 

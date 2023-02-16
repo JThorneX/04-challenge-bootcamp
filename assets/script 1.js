@@ -74,13 +74,13 @@ var theQuestions = [
 
 // splash screen
 
-var splashOff = document.querySelector(".splashPageContainer");
-splashOff.addEventListener("click", () => {
-  splashOff.style.opacity = 0;
-  setTimeout(() => {
-    splashOff.classList.add("hidden");
-  }, 610);
-});
+// var splashOff = document.querySelector(".splashPageContainer");
+// splashOff.addEventListener("click", () => {
+//   splashOff.style.opacity = 0;
+//   setTimeout(() => {
+//     splashOff.classList.add("hidden");
+//   }, 610);
+// });
 
 //check timer every second
 function countdown() {
@@ -135,18 +135,18 @@ var answersChecker = function (event) {
   if (checkAnswer.textContent === theQuestions[QuestionsIndex].correctAnswer) {
     correctYes.textContent = "Correct!";
     setTimeout(() => {
-      correctYes.style.display = "none";
-    }, 800);
+      correctYes.textContent = "";
+    }, 800); ////tried style.display = "none";
     nextQuestion(); //goes to next question function below
   } else if (
     checkAnswer.textContent !== theQuestions[QuestionsIndex].correctAnswer
   ) {
     timeLeft = timeLeft - penaltyPoints;
-    penaltyText.textContent = "-3"; //var defined above within function (null?)
+    penaltyText.textContent = "-3"; //var defined above within function (null?) ////still null
     wrongYes.textContent = "Wrong!";
     setTimeout(() => {
-      wrongYes.style.display = "none";
-      penaltyText.style.display = "none";
+      wrongYes.textContent = "";
+      penaltyText.textContent = "";
     }, 800);
     nextQuestion(); //goes to next question below
   } else {
@@ -176,7 +176,8 @@ var gameOver = function () {
   typeInitials.removeAttribute("hidden");
 };
 //play again
-var playAgain = function () {
+var playAgain = function (event) {
+  event.preventDefault;
   time = 60;
   clearInterval(timerInter);
   currentQuestion = 0;

@@ -92,7 +92,7 @@ section {
 .leaderboard li {
   display: inline-block;
   width: 200px;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-align: center;
   color: var(--lightP);
   list-style-type: none;
@@ -179,7 +179,7 @@ section {
 }
 
 .choicesBtn:active {
-  outline: var(--lightP);
+  border: 1px solid var(--lightP);
 }
 
 .btn-grid {
