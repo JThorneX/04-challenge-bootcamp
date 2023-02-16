@@ -170,6 +170,8 @@ var nextQuestion = function () {
 var gameOver = function () {
   clearInterval(timerInter);
   questionsContainer.textContent = "";
+  timerEl.textContent = "";
+  questionsContainer.textContent = "Score: " + timeLeft;
   // var theBtns = document.getElementById("theBtns" + i);
   // theBtns.setAttribute("hidden", true);
   choicesBtn.classList.add("hidden");
@@ -181,14 +183,14 @@ var playAgain = function (event) {
   time = 60;
   clearInterval(timerInter);
   currentQuestion = 0;
-  choicesBtn.style.visibility = "visible";
+  choicesBtn.classList.remove("hidden");
+  typeInitials.setAttribute("hidden");
   startQuiz();
 };
 
 //create high score + input initials
 var initialInput = function (event) {
   //// event.stopPropagation(); ???????????
-  questionsContainer.textContent = "Score: " + timeLeft;
   var initials = document.getElementById("inputInitials");
   initials.setAttribute("hidden", "false");
   var LBinfo = {
