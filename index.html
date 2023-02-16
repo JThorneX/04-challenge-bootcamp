@@ -10,28 +10,38 @@
   <body>
     <h1>Test Your Knowledge</h1>
     <section>
-      <!-- <div class="splashPageContainer">
+      <div class="splashPageContainer">
         <p class="splashTextP">
           This is a quiz to test your knowledge of basic JavaScript. <br />The
           quiz is timed and if you answer wrong, you will lose 3 seconds -
           <br />it ends when you've answered 10 questions or run out of time.<br />
           Click to continue.
         </p>
-      </div> -->
+      </div>
       <div id="leaderboard" class="leaderboard">
         <h2>Leaderboard</h2>
-        <div id=leaderboardBoard></div>
+        <ul>
+          <li>Player</li>
+          <li>Score</li>
+        </ul>
+        <div id="leaderboardBoard">
+          <ul id="playerDisplay">
+            <!-- <li id="playerName"></li>
+            <li id="PlayScore"></li> -->
+          </ul>
+        </div>
         <button id="clearLeader">Clear Scores</button>
-    </div>
+      </div>
       <div class="quizContainer">
         <div id="questionsArea" class="questionsArea">Press Start</div>
-        <div class="finalScore hide" id="finalPopUp">
+        <!-- <div class="finalScore hide" id="finalPopUp">
           <span id="finalScore"></span>
-        </div>
+        </div> -->
         <div id="answersArea" class="answersArea">
-          <div id="inputInitials" class="hide">
+          <div hidden id="inputInitials" class="initialsInput">
+            <label for="initials">Enter initials:</label><br />
             <input type="text" id="initials" /><br />
-            <p>Enter initials:</p>
+            <button id="submitBtn" class="btn hide">Submit</button>
           </div>
 
           <div id="choicesArea" class="btn-grid">
@@ -41,10 +51,10 @@
             <button id="theBtns3" class="choicesBtn"></button>
           </div>
         </div>
-        <div id="subBtn" class="hide">
-          <button id="submitBtn" class="btn hide">Submit</button>
+        <div id="starBtn" class="show">
+          <button id="startBtn" class="btn">Start</button>
         </div>
-        <div id="starBtn" class=show"><button id="startBtn" class="btn">Start</button></div>
+        <div id="playAgainBtn">Play Again</div>
         <div id="results" class="results"></div>
       </div>
       <div id="timerDisplay" class="timerDisplay">
