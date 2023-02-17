@@ -100,8 +100,8 @@ function countdown() {
 //eventListeners
 startBtn.addEventListener("click", startQuiz); //calls startQuiz below
 answersContainer.addEventListener("click", answersChecker);
-playAgainBtn.addEventListener("click", playAgain);
-submitBtn.addEventListener("click", initialInput);
+// submitBtn.addEventListener("click", initialInput);
+// playAgainBtn.addEventListener("click", playAgain);
 
 //check if answer is correct
 
@@ -133,9 +133,11 @@ var answersChecker = function (event) {
   var penaltyText = document.getElementById("penalty"); //called in wrong else if
   var checkAnswer = event.target;
   if (checkAnswer.textContent === theQuestions[QuestionsIndex].correctAnswer) {
-    correctYes.textContent = "Correct!";
+    // correctYes.textContent = "Correct!";
+    correctYes.removeAttribute("hide", true);
     setTimeout(() => {
-      correctYes.textContent = "";
+      // correctYes.textContent = "";
+      correctYes.setAttribute("hide", true);
     }, 800); ////tried style.display = "none";
     nextQuestion(); //goes to next question function below
   } else if (
@@ -148,9 +150,6 @@ var answersChecker = function (event) {
       wrongYes.textContent = "";
       penaltyText.textContent = "";
     }, 800);
-    nextQuestion(); //goes to next question below
-  } else {
-    gameOver(); //goes to game over below
   }
 };
 
@@ -176,9 +175,12 @@ var gameOver = function () {
   // theBtns.setAttribute("hidden", true);
   choicesBtn.classList.add("hidden");
   typeInitials.removeAttribute("hidden");
+  submitBtn.addEventListener("click", initialInput);
 };
 //play again
 var playAgain = function (event) {
+  ////
+  playAgainBtn.addEventListener("click", playAgain);
   event.preventDefault;
   time = 60;
   clearInterval(timerInter);
@@ -190,15 +192,15 @@ var playAgain = function (event) {
 
 //create high score + input initials
 var initialInput = function (event) {
-  //// event.stopPropagation(); ???????????
-  var initials = document.getElementById("inputInitials");
-  initials.setAttribute("hidden", "false");
+  event.stopPropagation(); //event.preventDefault();  //???????????
+  var initials = document.getElementById("initials").value;
+
   var LBinfo = {
-    initials: initials.value,
+    initials: initials,
     score: timeLeft,
   };
-  leaderScores(LBinfo);
-  displayLeaderboard();
+  // updateLeader();
+  // displayLeaderboard(); //goes down
 };
 
 // function finalScore() {
@@ -216,6 +218,7 @@ var scoresSort = function () {
 
 //leaderboard display
 var displayLeaderboard = function () {
+  //called from initialInput above
   var sort = scoresSort(); //call scoresSort above
   var theLB = document.getElementById("leaderboardBoard"); //the lis in the board itself
   theLB.textContent = "";
@@ -224,10 +227,11 @@ var displayLeaderboard = function () {
     var entries = sort[i];
     var entriesLB = document.getElementById("playerDisplay");
     entriesLB.createElement("li");
-    entriesLB.textContent = entries.intials + " - " + entries.score;
+    entriesLB.textContent = entries.typeIntials + " - " + entries.score;
     theLB.appendChild(entriesLB);
   }
 };
+
 //clear leaderboard (localstorage)
 var clearLeaderboard = function () {
   localStorage.clear();
@@ -235,18 +239,94 @@ var clearLeaderboard = function () {
 };
 //save score (local storage google) (JSON stringify)
 var leaderScores = function (LBinfo) {
-  var LBArray = getScore();
+  //called from initialInput
+  var LBArray = getLocal();
   LBArray.push(LBinfo);
   localStorage.setItem("LBArray", JSON.stringify(LBArray));
 };
 //retrieve from localstorage and parse
 var getLocal = function () {
+  //called from scoresSort
   var localScores = localStorage.getItem("LBArray");
   if (localScores !== null) {
-    var LBArray = JSON.parse(localScores);
+    var LBParsed = JSON.parse(localScores);
     return scoreArray;
   } else {
     scoreArray = [];
   }
-  return LBArray;
+  return LBParsed;
 };
+// var leaderboard = document.getElementById("playerDisplay");
+
+// var localStorage = {};
+
+// var scores = [];
+
+// try {
+//   scores = JSON.parse(localStorage.scores);
+// } catch (err) {}
+
+// document.getElementById("submitBtn").onclick = function () {
+//   localStorage.scores = JSON.stringify(scores);
+
+//   leaderboard.textContent = scores;
+// };
+
+// document.getElementById("clearLeader").onclick = function () {
+//   scores = [];
+//   delete localStorage.scores;
+//   leaderboard.textContent = "";
+// };
+
+// var playerScore = document.getElementById("timerDisplay");
+// function leaderScores() {
+//   if (typeof Storage !== "undefined") {
+//     var finalScores = false;
+//     if (localStorage["leaderboard"]) {
+//       leaderboard.textContent = "";
+//       finalScores = JSON.parse(localStorage["leaderboard"]);
+//       finalScores = finalScores.sort(function (a, b) {
+//         return parseInt(b) - parseInt(a);
+//       });
+//       for (var i = 0; i < 10; i++) {
+//         var entries = finalScores[i];
+//         console.log(entries);
+//         var scoreList = document.createElement("li");
+//         scoreList.textContent = typeof entries != "undefined" ? entries : "";
+//         leaderboard.appendChild(scoreList);
+//       }
+//     }
+//   } else {
+//     leaderboard.style.display = "none";
+//   }
+// }
+
+// function updateLeader() {
+//   if (typeof Storage !== "undefined") {
+//     var currentScore = parseInt(playerScore.textContent);
+//     var scores = false;
+//     if (localStorage["leaderboard"]) {
+//       scores = JSON.parse(localStorage["leaderboard"]);
+//       scores = scores.sort(function (a, b) {
+//         return parseInt(b) - parseInt(a);
+//       });
+//       for (var i = 0; i < 10; i++) {
+//         var entries = parseInt(scores[i]);
+//         var val = !isNaN(entries) ? entries : 0;
+//         if (currentScore > val) {
+//           val = currentScore;
+//           scores.splice(i, 0, parseInt(currentScore));
+//           break;
+//         }
+//       }
+//       scores.length = 10;
+//       localStorage["leaderboard"] = JSON.stringify(scores);
+//     } else {
+//       var scores = new Array();
+//       scores[0] = currentScore;
+//       localStorage["leaderboard"] = JSON.stringify(scores);
+//     }
+//     leaderScores();
+//   }
+// }
+
