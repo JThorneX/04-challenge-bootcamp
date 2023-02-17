@@ -123,6 +123,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: var(--dark);
   color: var(--lightP);
   font-size: 35px;
