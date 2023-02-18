@@ -49,9 +49,9 @@ var theQuestions = [
     question: "How would you write an alert?",
     choices: [
       "var alert - 'text here';",
-      "alert('text here');",
-      "alert = 'text here';",
       "alert!('text here');",
+      "alert = 'text here';",
+      "alert('text here');",
     ],
     correctAnswer: "alert('text here');",
   },
@@ -76,21 +76,61 @@ var theQuestions = [
     correctAnswer: "not a number",
   },
   {
-    question: "What symbol denotes an array?",
-    choices: ["[ ]", "> <", "* *", "~ ~"],
-    correctAnswer: "[ ]",
+    question: "What do you do at the end of DOM manipulation?",
+    choices: [
+      "apologize and go to therapy for manipulating it",
+      "console.log(DOM)",
+      "append to the DOM",
+      "declare it to the global scope",
+    ],
+    correctAnswer: "append to the DOM",
+  },
+  {
+    question: "What does JSON stand for?",
+    choices: [
+      "jason but spelled stupid",
+      "JavaScript Object Notation",
+      "JavaScript On",
+      "the son of JavaScript",
+    ],
+    correctAnswer: "JavaScript Object Notation",
+  },
+  {
+    question: "How do you get JavaScript to listen for clicks?",
+    choices: [
+      "you ask it to",
+      "var click = listen",
+      "install ears.exe",
+      "add an event listener",
+    ],
+    correctAnswer: "add an event listener",
+  },
+  {
+    question: "How would you call the function: functionName?",
+    choices: [
+      "functionName();",
+      "!functionName(run);",
+      "you don't need to",
+      "with a telephone",
+    ],
+    correctAnswer: "functionName();",
+  },
+  {
+    question: "Who is the best superhero?",
+    choices: ["Superman", "Batman", "Spider-Man", "Iron Man"],
+    correctAnswer: "Spider-Man",
   },
 ];
 
 // splash screen
 
-// var splashOff = document.querySelector(".splashPageContainer");
-// splashOff.addEventListener("click", () => {
-//   splashOff.style.opacity = 0;
-//   setTimeout(() => {
-//     splashOff.classList.add("hidden");
-//   }, 610);
-// });
+var splashOff = document.querySelector(".splashPageContainer");
+splashOff.addEventListener("click", () => {
+  splashOff.style.opacity = 0;
+  setTimeout(() => {
+    splashOff.classList.add("hidden");
+  }, 610);
+});
 
 //check timer every second
 function countdown() {
@@ -183,6 +223,7 @@ var nextQuestion = function () {
 
 //game over
 var gameOver = function () {
+  clearInterval(timerInter);
   questionsContainer.textContent = "";
   timerEl.classList.add("hide");
   questionsContainer.textContent = "Score: " + timeLeft;
@@ -191,8 +232,6 @@ var gameOver = function () {
   choicesBtn.classList.add("hidden");
   typeInitials.removeAttribute("hidden");
   QuestionsIndex = 0;
-  score = 0;
-  timeLeft = 60;
   submitBtn.addEventListener("click", initialInput);
 };
 //play again
