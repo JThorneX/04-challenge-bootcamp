@@ -4,7 +4,7 @@ var leaderboardScores = document.getElementById("leaderboard");
 var questionsContainer = document.getElementById("questionsArea");
 var answersContainer = document.getElementById("answersArea");
 var timerEl = document.getElementById("timerDisplay");
-var correctYes = document.getElementById("correctChecker");
+// var correctYes = document.getElementById("correctChecker");
 var wrongYes = document.getElementById("wrongChecker");
 // var finalScore = document.getElementById("finalScore");
 var penaltyDisplay = document.getElementById("penalty");
@@ -131,24 +131,28 @@ var answersChecker = function (event) {
   //technically in a for loop
   //called from goQuestion above
   var penaltyText = document.getElementById("penalty"); //called in wrong else if
+  var wrongChecker = document.getElementById("wrongChecker");
+  var correctChecker= document.getElementById("correctChecker");
   var checkAnswer = event.target;
   if (checkAnswer.textContent === theQuestions[QuestionsIndex].correctAnswer) {
     // correctYes.textContent = "Correct!";
-    correctYes.removeAttribute("hide", true);
+    correctChecker.classList.remove("hide"); //tried hidden
     setTimeout(() => {
       // correctYes.textContent = "";
-      correctYes.setAttribute("hide", true);
-    }, 800); ////tried style.display = "none";
+      correctChecker.classList.add("hide");
+    }, 800); 
     nextQuestion(); //goes to next question function below
-  } else if (
-    checkAnswer.textContent !== theQuestions[QuestionsIndex].correctAnswer
-  ) {
+  } else if (checkAnswer.textContent !== theQuestions[QuestionsIndex].correctAnswer) {
+      wrongChecker.classList.remove("hide");
+      setTimeout(() => {
+        wrongChecker.classList.add("hide");
+      }, 800);
+    } else 
+    {
     timeLeft = timeLeft - penaltyPoints;
-    penaltyText.textContent = "-3"; //var defined above within function (null?) ////still null
-    wrongYes.textContent = "Wrong!";
+      
     setTimeout(() => {
-      wrongYes.textContent = "";
-      penaltyText.textContent = "";
+      
     }, 800);
   }
 };
@@ -199,8 +203,8 @@ var initialInput = function (event) {
     initials: initials,
     score: timeLeft,
   };
-  // updateLeader();
-  // displayLeaderboard(); //goes down
+  leaderScores(LBinfo);
+  displayLeaderboard(); //goes down
 };
 
 // function finalScore() {
@@ -221,13 +225,14 @@ var displayLeaderboard = function () {
   //called from initialInput above
   var sort = scoresSort(); //call scoresSort above
   var theLB = document.getElementById("leaderboardBoard"); //the lis in the board itself
-  theLB.textContent = "";
 
   for (i = 0; i < sort.length; i++) {
     var entries = sort[i];
     var entriesLB = document.getElementById("playerDisplay");
-    entriesLB.createElement("li");
-    entriesLB.textContent = entries.typeIntials + " - " + entries.score;
+    console.log(entries);
+    var li = document.createElement("li");
+    li.textContent = entries.initials + " - " + entries.score;
+    entriesLB.appendChild(li);
     theLB.appendChild(entriesLB);
   }
 };
@@ -248,11 +253,11 @@ var leaderScores = function (LBinfo) {
 var getLocal = function () {
   //called from scoresSort
   var localScores = localStorage.getItem("LBArray");
+  var LBParsed;
   if (localScores !== null) {
-    var LBParsed = JSON.parse(localScores);
-    return scoreArray;
+    LBParsed = JSON.parse(localScores);
   } else {
-    scoreArray = [];
+    LBParsed = [];
   }
   return LBParsed;
 };
@@ -329,4 +334,3 @@ var getLocal = function () {
 //     leaderScores();
 //   }
 // }
-
