@@ -80,6 +80,11 @@ section {
   color: var(--mutedP);
 }
 
+#penalty {
+  color: var(--lightP);
+  font-size: 60px;
+}
+
 .leaderboard {
   display: flex;
   width: 100%;

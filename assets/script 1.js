@@ -70,6 +70,16 @@ var theQuestions = [
     choices: ["[ ]", "> <", "* *", "~ ~"],
     correctAnswer: "[ ]",
   },
+  {
+    question: "What does NaN mean?",
+    choices: ["not a number", "404 error", "true", "my grandmother"],
+    correctAnswer: "not a number",
+  },
+  {
+    question: "What symbol denotes an array?",
+    choices: ["[ ]", "> <", "* *", "~ ~"],
+    correctAnswer: "[ ]",
+  },
 ];
 
 // splash screen
@@ -84,6 +94,7 @@ var theQuestions = [
 
 //check timer every second
 function countdown() {
+  timerEl.classList.remove("hide");
   //gets called below in function startQuiz
   timerInter = setInterval(function () {
     timeLeft--;
@@ -100,6 +111,7 @@ function countdown() {
 //eventListeners
 startBtn.addEventListener("click", startQuiz); //calls startQuiz below
 answersContainer.addEventListener("click", answersChecker);
+
 // submitBtn.addEventListener("click", initialInput);
 // playAgainBtn.addEventListener("click", playAgain);
 
@@ -132,7 +144,7 @@ var answersChecker = function (event) {
   //called from goQuestion above
   var penaltyText = document.getElementById("penalty"); //called in wrong else if
   var wrongChecker = document.getElementById("wrongChecker");
-  var correctChecker= document.getElementById("correctChecker");
+  var correctChecker = document.getElementById("correctChecker");
   var checkAnswer = event.target;
   if (checkAnswer.textContent === theQuestions[QuestionsIndex].correctAnswer) {
     // correctYes.textContent = "Correct!";
@@ -140,19 +152,19 @@ var answersChecker = function (event) {
     setTimeout(() => {
       // correctYes.textContent = "";
       correctChecker.classList.add("hide");
-    }, 800); 
+    }, 800);
     nextQuestion(); //goes to next question function below
-  } else if (checkAnswer.textContent !== theQuestions[QuestionsIndex].correctAnswer) {
-      wrongChecker.classList.remove("hide");
-      setTimeout(() => {
-        wrongChecker.classList.add("hide");
-      }, 800);
-    } else 
-    {
-    timeLeft = timeLeft - penaltyPoints;
-      
+  } else if (
+    checkAnswer.textContent !== theQuestions[QuestionsIndex].correctAnswer
+  ) {
+    wrongChecker.classList.remove("hide");
     setTimeout(() => {
-      
+      wrongChecker.classList.add("hide");
+    }, 800);
+    timeLeft = timeLeft - penaltyPoints;
+    penaltyText.classList.remove("hide");
+    setTimeout(() => {
+      penaltyText.classList.add("hide");
     }, 800);
   }
 };
@@ -171,26 +183,28 @@ var nextQuestion = function () {
 
 //game over
 var gameOver = function () {
-  clearInterval(timerInter);
   questionsContainer.textContent = "";
-  timerEl.textContent = "";
+  timerEl.classList.add("hide");
   questionsContainer.textContent = "Score: " + timeLeft;
   // var theBtns = document.getElementById("theBtns" + i);
   // theBtns.setAttribute("hidden", true);
   choicesBtn.classList.add("hidden");
   typeInitials.removeAttribute("hidden");
+  QuestionsIndex = 0;
+  score = 0;
+  timeLeft = 60;
   submitBtn.addEventListener("click", initialInput);
 };
 //play again
+
 var playAgain = function (event) {
   ////
-  playAgainBtn.addEventListener("click", playAgain);
   event.preventDefault;
-  time = 60;
   clearInterval(timerInter);
+  timeLeft = 60;
   currentQuestion = 0;
   choicesBtn.classList.remove("hidden");
-  typeInitials.setAttribute("hidden");
+  typeInitials.setAttribute("hidden", true);
   startQuiz();
 };
 
@@ -229,18 +243,20 @@ var displayLeaderboard = function () {
   for (i = 0; i < sort.length; i++) {
     var entries = sort[i];
     var entriesLB = document.getElementById("playerDisplay");
-    console.log(entries);
     var li = document.createElement("li");
     li.textContent = entries.initials + " - " + entries.score;
     entriesLB.appendChild(li);
     theLB.appendChild(entriesLB);
   }
+  playAgainBtn.addEventListener("click", playAgain);
+  clearLeader.addEventListener("click", clearLeaderboard);
 };
 
 //clear leaderboard (localstorage)
-var clearLeaderboard = function () {
+var clearLeaderboard = function (event) {
+  event.preventDefault;
   localStorage.clear();
-  displayLeaderboard();
+  console.log("hello");
 };
 //save score (local storage google) (JSON stringify)
 var leaderScores = function (LBinfo) {
